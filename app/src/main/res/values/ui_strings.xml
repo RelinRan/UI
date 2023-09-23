@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UICore</string>
+    <string name="loading_text">加载中...</string>
+    <!--WheelPicker-->
+    <string name="wheel_picker_cancel">取消</string>
+    <string name="wheel_picker_confirm">确定</string>
+    <string name="wheel_picker_to">至</string>
+    <!--SwipeLoadingLayout-->
+    <string name="swipe_loading_layout_more">加载更多</string>
+    <string name="swipe_loading_layout_empty">无更多数据</string>
+    <!--DatePick-->
+    <string name="date_pick_title">请选择日期</string>
+    <!--DateSwitchPicker-->
+    <string name="date_switch_pick_year">按年份选择</string>
+    <string name="date_switch_pick_month">按月份选择</string>
+    <string name="date_switch_pick_day">按日选择</string>
+    <!--MessageDialog-->
+    <string name="message_dialog_title">提示</string>
+    <string name="message_dialog_cancel">取消</string>
+    <string name="message_dialog_confirm">确定</string>
+</resources>

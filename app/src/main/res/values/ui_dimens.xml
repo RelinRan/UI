@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--AppActionBar-->
+    <dimen name="app_action_bar_title_text_size">16sp</dimen>
+    <dimen name="app_action_bar_back_text_size">16sp</dimen>
+    <dimen name="app_action_bar_menu_text_size">14sp</dimen>
+    <dimen name="app_action_bar_menu_number_text_size">10sp</dimen>
+    <!--Loading-->
+    <dimen name="loading_group_padding_horizontal">15dp</dimen>
+    <dimen name="loading_group_background_radius">5sp</dimen>
+    <dimen name="loading_group_height">50dp</dimen>
+    <dimen name="loading_group_elevation">3dp</dimen>
+    <dimen name="loading_circle_width">20dp</dimen>
+    <dimen name="loading_circle_height">20dp</dimen>
+    <dimen name="loading_text_margin_left">10dp</dimen>
+    <dimen name="loading_text_size">13sp</dimen>
+    <!--SwipeLoadingLayout-->
+    <dimen name="swipe_loading_layout_height">40dp</dimen>
+    <!--Toast-->
+    <dimen name="toast_background_radius">5dp</dimen>
+    <dimen name="toast_padding_vertical">5dp</dimen>
+    <dimen name="toast_padding_horizontal">10dp</dimen>
+    <dimen name="toast_text_size">14sp</dimen>
+    <dimen name="toast_y_offset">120dp</dimen>
+    <!--Wheel-->
+    <dimen name="wheel_item_width">160dp</dimen>
+    <dimen name="wheel_item_height">40dp</dimen>
+    <dimen name="wheel_divider_height">1dp</dimen>
+    <dimen name="wheel_highlight_radius">0dp</dimen>
+    <dimen name="wheel_text_size">16sp</dimen>
+    <dimen name="wheel_header_height">45dp</dimen>
+    <dimen name="wheel_header_text_size">16sp</dimen>
+    <dimen name="wheel_footer_height">45dp</dimen>
+    <dimen name="wheel_footer_text_size">16sp</dimen>
+    <!--DatePickerDialog-->
+    <dimen name="date_picker_group_height">200dp</dimen>
+    <dimen name="date_picker_button_text_size">15sp</dimen>
+    <dimen name="date_picker_button_padding_horizontal">15sp</dimen>
+    <dimen name="date_picker_button_group_height">45sp</dimen>
+    <dimen name="date_picker_title_text_size">15sp</dimen>
+    <dimen name="date_picker_top_radius">8sp</dimen>
+    <!--DateSwitchPicker-->
+    <dimen name="date_switch_pick_header_height">40dp</dimen>
+    <dimen name="date_switch_pick_button_radius">5dp</dimen>
+    <dimen name="date_switch_pick_button_group_padding">10dp</dimen>
+    <dimen name="date_switch_pick_button_group_item_horizontal_margin">10dp</dimen>
+    <!--Carousel-->
+    <dimen name="carousel_indicator_width">10dp</dimen>
+    <dimen name="carousel_indicator_height">10dp</dimen>
+    <!--MessageDialog-->
+    <dimen name="message_dialog_background_radius">8dp</dimen>
+    <dimen name="message_dialog_background_elevation">3dp</dimen>
+    <dimen name="message_dialog_title_text_size">16sp</dimen>
+    <dimen name="message_dialog_title_padding_horizontal">15dp</dimen>
+    <dimen name="message_dialog_title_padding_top">15dp</dimen>
+    <dimen name="message_dialog_content_text_size">15sp</dimen>
+    <dimen name="message_dialog_content_margin_vertical">30dp</dimen>
+    <dimen name="message_dialog_content_margin_horizontal">15dp</dimen>
+    <dimen name="message_dialog_button_text_size">14sp</dimen>
+    <!--TabLayout-->
+    <dimen name="tab_layout_tab_text_size">15sp</dimen>
+</resources>

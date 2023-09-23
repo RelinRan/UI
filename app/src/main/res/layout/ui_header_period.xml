@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/period_group"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/wheel_header_height"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/rbt_start"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:checked="true"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:textColor="@color/ui_period_header_text"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+    <TextView
+        android:id="@+id/tv_separation"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/wheel_picker_to"
+        android:textColor="@color/wheel_header_text_normal_color"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+    <RadioButton
+        android:id="@+id/rbt_end"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:textColor="@color/ui_period_header_text"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+</RadioGroup>

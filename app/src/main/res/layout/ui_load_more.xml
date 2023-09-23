@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.ui.recycler.SwipeLoadingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_loading_more"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/swipe_loading_layout_height"
+    android:textColor="@color/swipe_loading_layout_text_color"
+    app:empty="@string/swipe_loading_layout_empty"
+    app:lineColor="@color/swipe_loading_layout_line_color"
+    app:more="@string/swipe_loading_layout_more" />

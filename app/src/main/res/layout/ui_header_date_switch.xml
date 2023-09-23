@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/switch_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/date_switch_pick_button_group_padding"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/rbt_year"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/date_switch_pick_header_height"
+        android:layout_weight="1"
+        android:button="@null"
+        android:gravity="center"
+        android:text="@string/date_switch_pick_year"
+        android:background="@drawable/ui_date_switch_background"
+        android:textColor="@color/ui_switch_date_text"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+    <RadioButton
+        android:id="@+id/rbt_month"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/date_switch_pick_header_height"
+        android:layout_weight="1"
+        android:button="@null"
+        android:layout_marginLeft="@dimen/date_switch_pick_button_group_item_horizontal_margin"
+        android:gravity="center"
+        android:background="@drawable/ui_date_switch_background"
+        android:text="@string/date_switch_pick_month"
+        android:textColor="@color/ui_switch_date_text"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+    <RadioButton
+        android:id="@+id/rbt_day"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/date_switch_pick_header_height"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/date_switch_pick_button_group_item_horizontal_margin"
+        android:button="@null"
+        android:background="@drawable/ui_date_switch_background"
+        android:gravity="center"
+        android:checked="true"
+        android:text="@string/date_switch_pick_day"
+        android:textColor="@color/ui_switch_date_text"
+        android:textSize="@dimen/wheel_header_text_size" />
+
+</RadioGroup>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Theme-->
+    <color name="ui_theme_color">#26C9B7</color>
+    <color name="ui_dot_color">#FF0014</color>
+    <color name="ui_placeholder_background_color">#F8F8F8</color>
+    <!--Loading-->
+    <color name="loading_group_parent_background">#00000000</color>
+    <color name="loading_group_background">#FFFFFF</color>
+    <color name="loading_line_color">@color/ui_theme_color</color>
+    <color name="loading_text_color">@color/ui_theme_color</color>
+    <!--SwipeRefreshLayout-->
+    <color name="swipe_refresh_loading_color">@color/ui_theme_color</color>
+    <!--SwipeLoadingLayout-->
+    <color name="swipe_loading_layout_text_color">#DADADA</color>
+    <color name="swipe_loading_layout_line_color">#DADADA</color>
+    <!--Toast-->
+    <color name="toast_text_color">#FFFFFF</color>
+    <color name="toast_background_color">#80000000</color>
+    <!--Wheel-->
+    <color name="wheel_theme_color">@color/ui_theme_color</color>
+    <color name="wheel_text_color">#727272</color>
+    <color name="wheel_selected_text_color">@color/ui_theme_color</color>
+    <color name="wheel_highlight_color">#00000000</color>
+    <color name="wheel_divider_color">#F3F2F2</color>
+    <color name="wheel_header_background_color">#00000000</color>
+    <color name="wheel_header_text_check_color">@color/ui_theme_color</color>
+    <color name="wheel_header_text_normal_color">#333333</color>
+    <color name="wheel_footer_background_color">#00000000</color>
+    <color name="wheel_footer_text_check_color">@color/ui_theme_color</color>
+    <color name="wheel_footer_text_normal_color">#333333</color>
+    <!--DatePickerDialog-->
+    <color name="date_picker_background_color">#FFFFFF</color>
+    <color name="date_picker_divider_color">#F3F2F2</color>
+    <color name="date_picker_cancel_text_color">#333333</color>
+    <color name="date_picker_title_text_color">#333333</color>
+    <color name="date_picker_confirm_text_color">@color/ui_theme_color</color>
+    <!--SwitchDatePicker-->
+    <color name="date_switch_pick_check_background_color">@color/ui_theme_color</color>
+    <color name="date_switch_pick_normal_background_color">#00000000</color>
+    <color name="date_switch_pick_normal_stroke_color">#333333</color>
+    <color name="date_switch_pick_check_text_color">#FFFFFF</color>
+    <color name="date_switch_pick_normal_text_color">#333333</color>
+    <!--ShapeText-->
+    <color name="shape_text_color">#333333</color>
+    <color name="shape_solid_color">@color/ui_theme_color</color>
+    <color name="shape_stroke_color">@color/ui_theme_color</color>
+    <!--Carousel-->
+    <color name="carousel_indicator_selected_color">@color/ui_theme_color</color>
+    <color name="carousel_indicator_unselected_color">@color/ui_theme_color</color>
+    <color name="carousel_tools_background_color">#F2F2F2</color>
+    <!--MessageDialog-->
+    <color name="message_dialog_background_color">#FFFFFF</color>
+    <color name="message_dialog_title_text_color">#333333</color>
+    <color name="message_dialog_content_text_color">#333333</color>
+    <color name="message_dialog_divider_color">#EEEEEE</color>
+    <color name="message_dialog_cancel_text_color">#333333</color>
+    <color name="message_dialog_confirm_text_color">@color/ui_theme_color</color>
+</resources>

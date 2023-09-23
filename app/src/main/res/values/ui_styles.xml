@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--没有ActionBar的主题-->
+    <style name="UICore.Theme.Light.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+    <!--没有ActionBar的主题-->
+    <style name="UICore.Theme.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <!--没有TitleBar的主题-->
+    <style name="UICore.Theme.Light.NoActionBa.StatusBar.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+    <!--全透明背景的Dialog主题-->
+    <style name="UICore.Theme.Dialog.Transparent.Background" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@drawable/ui_window_background</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!--半透明背景的Dialog主题-->
+    <style name="UICore.Theme.Dialog.Translucent.Background" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <!--横向ProgressBar样式-->
+    <style name="UICore_ProgressBar_Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/ui_progress_horizontal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:minHeight">3dip</item>
+        <item name="android:maxHeight">3dip</item>
+    </style>
+    <!--窗口进入退出缩放动画-->
+    <style name="UICore_Window_Animation_Scale" parent="android:Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/ui_anim_scale_max</item>
+        <item name="android:windowExitAnimation">@anim/ui_anim_scale_min</item>
+    </style>
+    <!--窗口进入退出底部动画-->
+    <style name="UICore_Window_Animation_Bottom" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/ui_anim_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/ui_anim_bottom_exit</item>
+    </style>
+
+    <style name="UICore_Tab_Layout_Tab_Text_Appearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/tab_layout_tab_text_size</item>
+    </style>
+</resources>

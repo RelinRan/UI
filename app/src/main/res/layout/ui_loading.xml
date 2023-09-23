@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/android_loading_group_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/loading_group_parent_background">
+
+    <LinearLayout
+        android:id="@+id/android_loading_group"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/loading_group_height"
+        android:layout_gravity="center"
+        android:elevation="@dimen/loading_group_elevation"
+        android:background="@drawable/ui_loading_background"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/loading_group_padding_horizontal">
+
+        <androidx.ui.widget.LoadingView
+            android:id="@+id/android_loading"
+            android:layout_width="@dimen/loading_circle_width"
+            android:layout_height="@dimen/loading_circle_height"
+            app:lineColor="@color/loading_line_color"/>
+
+        <TextView
+            android:id="@+id/android_loading_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/loading_text_margin_left"
+            android:text="@string/loading_text"
+            android:textColor="@color/loading_text_color"
+            android:textSize="@dimen/loading_text_size" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.ui.widget.ShapeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:solidColor="@color/ui_theme_color">
+
+    <androidx.ui.widget.ShapeButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Header"
+        android:textColor="@android:color/white" />
+
+</androidx.ui.widget.ShapeLayout>

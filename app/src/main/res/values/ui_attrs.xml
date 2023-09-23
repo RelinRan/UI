@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--公共属性-->
+    <attr name="lineWidth" format="dimension" />
+    <attr name="lineColor" format="color" />
+    <attr name="lineLength" format="dimension" />
+    <attr name="lineAlpha" format="integer" />
+    <attr name="duration" format="integer" />
+    <attr name="saturation" format="float" />
+    <attr name="itemCount" format="integer" />
+    <attr name="listItem" format="reference" />
+    <attr name="radius" format="dimension" />
+    <attr name="topLeftRadius" format="dimension" />
+    <attr name="topRightRadius" format="dimension" />
+    <attr name="bottomLeftRadius" format="dimension" />
+    <attr name="bottomRightRadius" format="dimension" />
+    <attr name="solidColor" format="reference|color"/>
+    <attr name="strokeWidth" format="reference|dimension"/>
+    <attr name="strokeColor" format="reference|color"/>
+    <attr name="shape">
+        <enum name="rectangle" value="0" />
+        <enum name="oval" value="1" />
+        <enum name="line" value="2" />
+        <enum name="ring" value="3" />
+    </attr>
+    <!--Placeholder-->
+    <declare-styleable name="Placeholder">
+        <attr name="android:text" format="string" />
+        <attr name="android:textSize" format="dimension" />
+        <attr name="android:textColor" format="color" />
+        <attr name="android:strokeWidth" format="color" />
+        <attr name="android:src" format="reference|color" />
+        <attr name="textMarginTop" format="dimension" />
+        <attr name="textMarginBottom" format="dimension" />
+        <attr name="textMarginVertical" format="dimension" />
+    </declare-styleable>
+    <!--LoadingView-->
+    <declare-styleable name="LoadingView">
+        <attr name="android:radius" format="dimension" />
+        <attr name="android:duration" format="integer" />
+        <attr name="android:angle" format="float" />
+        <attr name="lineWidth" />
+        <attr name="lineColor" />
+        <attr name="lineLength" />
+        <attr name="lineAlpha" />
+    </declare-styleable>
+    <!--SwipeLoadingLayout-->
+    <declare-styleable name="SwipeLoadingLayout">
+        <attr name="android:text" format="string" />
+        <attr name="android:textSize" format="dimension" />
+        <attr name="android:textColor" format="color" />
+        <attr name="android:radius" format="dimension" />
+        <attr name="android:duration" format="integer" />
+        <attr name="android:angle" format="float" />
+        <attr name="lineWidth" />
+        <attr name="lineColor" />
+        <attr name="lineLength" />
+        <attr name="lineAlpha" />
+        <attr name="more" format="string" />
+        <attr name="empty" format="string" />
+        <attr name="loadingMarginRight" format="dimension" />
+    </declare-styleable>
+    <!--SwipeRefreshLayout-->
+    <declare-styleable name="SwipeRefreshLayout">
+        <attr name="swipeRefreshCircleBackgroundColor" format="color" />
+    </declare-styleable>
+    <!--WheelView-->
+    <declare-styleable name="WheelView">
+        <attr name="wheelCyclic" format="boolean" />
+        <attr name="wheelEntries" format="reference" />
+        <attr name="wheelItemCount" format="integer" />
+        <attr name="wheelItemWidth" format="dimension" />
+        <attr name="wheelItemHeight" format="dimension" />
+        <attr name="wheelTextSize" format="dimension" />
+        <attr name="wheelTextLeftMargin" format="dimension" />
+        <attr name="wheelTextRightMargin" format="dimension" />
+        <attr name="wheelTextColor" format="color" />
+        <attr name="wheelSelectedTextColor" format="color" />
+        <attr name="wheelDividerColor" format="color" />
+        <attr name="wheelDividerHeight" format="dimension" />
+        <attr name="wheelHighlightColor" format="color" />
+        <attr name="wheelHighlightRadius" format="dimension" />
+        <attr name="wheelHighlightLeftTopRadius" format="dimension" />
+        <attr name="wheelHighlightLeftBottomRadius" format="dimension" />
+        <attr name="wheelHighlightRightTopRadius" format="dimension" />
+        <attr name="wheelHighlightRightBottomRadius" format="dimension" />
+    </declare-styleable>
+    <!--Wheel3DView-->
+    <declare-styleable name="Wheel3DView">
+        <attr name="wheelToward" format="enum">
+            <enum name="none" value="0" />
+            <enum name="left" value="-1" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+    <!--ShapeText-->
+    <declare-styleable name="ShapeText">
+        <attr name="android:gravity" />
+        <attr name="shape" />
+        <attr name="radius" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
+        <attr name="solidColor" />
+        <attr name="topLeftRadius" />
+        <attr name="topRightRadius" />
+        <attr name="bottomLeftRadius" />
+        <attr name="bottomRightRadius" />
+        <attr name="saturation" />
+    </declare-styleable>
+    <!--ShapeLayout-->
+    <declare-styleable name="ShapeLayout">
+        <attr name="radius" />
+        <attr name="shape" />
+        <attr name="strokeWidth" />
+        <attr name="strokeColor" />
+        <attr name="solidColor" />
+        <attr name="topLeftRadius" />
+        <attr name="topRightRadius" />
+        <attr name="bottomLeftRadius" />
+        <attr name="bottomRightRadius" />
+    </declare-styleable>
+    <!--Carousel-->
+    <declare-styleable name="CarouselPager">
+        <attr name="indicatorSelected" format="reference" />
+        <attr name="indicatorUnSelected" format="reference" />
+        <attr name="autoPlay" format="boolean" />
+        <attr name="cycle" format="boolean" />
+        <attr name="duration" />
+        <attr name="indicatorGravity">
+            <flag name="left" value="3" />
+            <flag name="top" value="48" />
+            <flag name="right" value="5" />
+            <flag name="bottom" value="80" />
+            <flag name="center" value="17" />
+            <flag name="center_horizontal" value="1" />
+            <flag name="center_vertical" value="16" />
+        </attr>
+        <attr name="indicatorLayoutMargin" format="dimension" />
+        <attr name="indicatorLayoutMarginLeft" format="dimension" />
+        <attr name="indicatorLayoutMarginTop" format="dimension" />
+        <attr name="indicatorLayoutMarginRight" format="dimension" />
+        <attr name="indicatorLayoutMarginBottom" format="dimension" />
+        <attr name="indicatorMargin" format="dimension" />
+        <attr name="indicatorMarginLeft" format="dimension" />
+        <attr name="indicatorMarginTop" format="dimension" />
+        <attr name="indicatorMarginRight" format="dimension" />
+        <attr name="indicatorMarginBottom" format="dimension" />
+        <attr name="itemCount" />
+        <attr name="listItem" />
+    </declare-styleable>
+    <!--FlowLayout-->
+    <declare-styleable name="FlowLayout">
+        <attr name="android:horizontalSpacing" />
+        <attr name="android:verticalSpacing" />
+    </declare-styleable>
+    <!--FlowView-->
+    <declare-styleable name="Flow">
+        <attr name="android:horizontalSpacing" />
+        <attr name="android:verticalSpacing" />
+        <attr name="itemCount" />
+        <attr name="listItem" />
+    </declare-styleable>
+    <!--SwipeRefreshLoading-->
+    <declare-styleable name="SwipeRefreshLoading">
+        <attr name="itemCount" />
+        <attr name="listItem" />
+    </declare-styleable>
+    <!--CardImage-->
+    <declare-styleable name="CardImage">
+        <attr name="android:src"/>
+        <attr name="android:scaleType"/>
+        <attr name="android:adjustViewBounds"/>
+    </declare-styleable>
+
+</resources>
