@@ -199,7 +199,7 @@ public class AppPermission {
                 }
             }
         } else {
-            requestPermissions(new String[]{Manifest.permission_group.STORAGE}, REQUEST_CODE);
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
         }
     }
 
