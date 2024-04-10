@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -181,6 +182,25 @@ public class AppPermission {
             list.add(permissions[i]);
         }
         return list;
+    }
+
+    /**
+     * 请求文件存储权限
+     */
+    public void requestStoragePermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+                if (listener != null) {
+                    listener.onRequestPermissionsGranted(REQUEST_CODE, new String[]{Manifest.permission_group.STORAGE});
+                }
+            } else {
+                if (listener != null) {
+                    listener.onRequestPermissionsDenied(REQUEST_CODE, new String[]{Manifest.permission_group.STORAGE});
+                }
+            }
+        } else {
+            requestPermissions(new String[]{Manifest.permission_group.STORAGE}, REQUEST_CODE);
+        }
     }
 
     /**
