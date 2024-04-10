@@ -23,6 +23,14 @@
         <enum name="line" value="2" />
         <enum name="ring" value="3" />
     </attr>
+    <attr name="textUnit">
+        <enum name="px" value="0" />
+        <enum name="dip" value="1" />
+        <enum name="sp" value="2" />
+        <enum name="pt" value="3" />
+        <enum name="in" value="4" />
+        <enum name="mm" value="4" />
+    </attr>
     <!--Placeholder-->
     <declare-styleable name="Placeholder">
         <attr name="android:text" format="string" />
@@ -56,6 +64,7 @@
         <attr name="lineColor" />
         <attr name="lineLength" />
         <attr name="lineAlpha" />
+        <attr name="textUnit" />
         <attr name="more" format="string" />
         <attr name="empty" format="string" />
         <attr name="loadingMarginRight" format="dimension" />

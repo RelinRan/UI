@@ -71,6 +71,10 @@ public class SwipeLoadingLayout extends LinearLayout implements NestedScrollView
      */
     private int textColor = Color.parseColor("#DADADA");
     /**
+     * 文字单位
+     */
+    private int textUnit = 0;
+    /**
      * 加载更多文字
      */
     private String more;
@@ -122,6 +126,7 @@ public class SwipeLoadingLayout extends LinearLayout implements NestedScrollView
             more = array.getString(R.styleable.SwipeLoadingLayout_more);
             empty = array.getString(R.styleable.SwipeLoadingLayout_empty);
             textSize = array.getDimensionPixelSize(R.styleable.SwipeLoadingLayout_android_textSize, textSize);
+            textUnit = array.getInt(R.styleable.SwipeLoadingLayout_textUnit, textUnit);
             textColor = array.getColor(R.styleable.SwipeLoadingLayout_android_textColor, textColor);
             array.recycle();
         }
@@ -157,7 +162,7 @@ public class SwipeLoadingLayout extends LinearLayout implements NestedScrollView
         textView = new TextView(getContext());
         textView.setTextColor(textColor);
         textView.setText(more);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        textView.setTextSize(textUnit, textSize);
         parent.addView(textView);
         addView(parent);
     }
@@ -338,7 +343,7 @@ public class SwipeLoadingLayout extends LinearLayout implements NestedScrollView
     public void setOnLoadingListener(OnLoadingListener onLoadingListener) {
         this.onLoadingListener = onLoadingListener;
     }
-    
+
     public interface OnLoadingListener {
 
         /**
