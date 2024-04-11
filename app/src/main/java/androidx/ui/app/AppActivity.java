@@ -316,6 +316,7 @@ public class AppActivity extends AppCompatActivity implements AppTransaction, Ap
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+        permission.onActivityResult(requestCode,resultCode,data);
         transaction.onActivityResult(activity, requestCode, resultCode, data);
     }
 

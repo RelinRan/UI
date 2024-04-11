@@ -289,6 +289,7 @@ public class AppFragment extends Fragment implements AppTransaction, AppLayout, 
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+        permission.onActivityResult(requestCode,resultCode,data);
         transaction.onActivityResult(activity, requestCode, resultCode, data);
     }
 

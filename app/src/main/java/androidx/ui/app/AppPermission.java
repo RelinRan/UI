@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -26,13 +27,29 @@ public class AppPermission {
     /**
      * 请求代码
      */
-    public static final int REQUEST_CODE = 789;
+    public static final int REQUEST_PERMISSION_CODE = 1;
     /**
-     * 内存权限
+     * 请求文件相关权限代码
+     */
+    public static final int REQUEST_STORAGE_CODE = 2;
+    /**
+     * 文件读写权限 Android 10及其以下
      */
     public final static String GROUP_STORAGE[] = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
+    };
+    /**
+     * 文件管理权限 Android 11以上
+     */
+    public final static String MANAGE_EXTERNAL_STORAGE[] = {
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
+    };
+
+    public final static String GROUP_MEDIA[] = {
+            Manifest.permission.READ_MEDIA_VIDEO,
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.READ_MEDIA_IMAGES,
     };
     /**
      * 照相机权限
@@ -70,6 +87,9 @@ public class AppPermission {
      * 权限请求监听
      */
     private OnRequestPermissionsListener listener;
+    private String[] permissions;
+    private int requestCode;
+    private boolean startForResult;
 
     /**
      * 权限构造函数
@@ -120,29 +140,28 @@ public class AppPermission {
     }
 
     /**
-     * 检查权限
+     * 检查被拒绝的权限
      *
      * @param permissions 权限
      * @return 授权失败的权限
      */
-    public List<String> checkDenied(String[] permissions) {
+    public List<String> checkDeniedPermissions(String[] permissions) {
         List<String> denied = new ArrayList<>();
         for (int i = 0; i < permissions.length; i++) {
             if (ContextCompat.checkSelfPermission(getContext(), permissions[i]) == PackageManager.PERMISSION_DENIED) {
                 denied.add(permissions[i]);
             }
         }
-
         return denied;
     }
 
     /**
-     * 检查不可用
+     * 检查显示请求理由的权限
      *
      * @param permissions 权限
      * @return
      */
-    public List<String> checkDisabled(String[] permissions) {
+    public List<String> checkShowRequestRationalePermissions(String[] permissions) {
         List<String> disabled = new ArrayList<>();
         for (int i = 0; i < permissions.length; i++) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -187,20 +206,41 @@ public class AppPermission {
     /**
      * 请求文件存储权限
      */
-    public void requestStoragePermissions() {
+    public void requestExternalStoragePermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {
+                Log.i(TAG, "onRequestPermissionsGranted");
                 if (listener != null) {
-                    listener.onRequestPermissionsGranted(REQUEST_CODE, new String[]{Manifest.permission_group.STORAGE});
+                    listener.onRequestPermissionsGranted(REQUEST_STORAGE_CODE, GROUP_STORAGE);
                 }
             } else {
-                if (listener != null) {
-                    listener.onRequestPermissionsDenied(REQUEST_CODE, new String[]{Manifest.permission_group.STORAGE});
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    //Android 13
+                    requestPermissions(GROUP_MEDIA, REQUEST_STORAGE_CODE);
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    //Android 11 + Android 12
+                    requestPermissions(MANAGE_EXTERNAL_STORAGE, REQUEST_STORAGE_CODE);
                 }
             }
         } else {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
+            requestPermissions(GROUP_STORAGE, REQUEST_STORAGE_CODE);
         }
+    }
+
+    /**
+     * 获取请求代码
+     * @return
+     */
+    public int getRequestCode() {
+        return requestCode;
+    }
+
+    /**
+     * 获取请求的权限
+     * @return
+     */
+    public String[] getPermissions() {
+        return permissions;
     }
 
     /**
@@ -210,36 +250,74 @@ public class AppPermission {
      * @param requestCode 请求代码
      */
     public void requestPermissions(String[] permissions, int requestCode) {
+        this.permissions = permissions;
+        this.requestCode = requestCode;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Log.i(TAG, "requestPermissions permissions: " + toList(permissions).toString() + ", requestCode: " + requestCode);
-            List<String> disabled = checkDisabled(permissions);
-            if (disabled.size() > 0) {
-                Log.i(TAG, "disabled: " + disabled.toString());
+            List<String> rationalePermissions = checkShowRequestRationalePermissions(permissions);
+            if (rationalePermissions.size() > 0) {
+                Log.i(TAG, "rationalePermissions: " + rationalePermissions);
                 if (listener != null) {
                     listener.onRequestPermissionRationale(requestCode, permissions);
                 }
             } else {
-                List<String> denied = checkDenied(permissions);
-                if (denied.size() > 0) {
-                    Log.i(TAG, "denied: " + denied.toString());
+                List<String> deniedPermissions = checkDeniedPermissions(permissions);
+                Log.i(TAG, "deniedPermissions: " + deniedPermissions);
+                if (deniedPermissions.size() > 0) {
                     if (activity != null) {
-                        activity.requestPermissions(toArray(denied), requestCode);
+                        activity.requestPermissions(toArray(deniedPermissions), requestCode);
                     }
                     if (fragment != null) {
-                        fragment.requestPermissions(toArray(denied), requestCode);
+                        fragment.requestPermissions(toArray(deniedPermissions), requestCode);
                     }
                 } else {
+                    Log.i(TAG, "onRequestPermissionsGranted");
                     if (listener != null) {
                         listener.onRequestPermissionsGranted(requestCode, permissions);
                     }
                 }
             }
         } else {
+            Log.i(TAG, "onRequestPermissionsGranted");
             if (listener != null) {
                 listener.onRequestPermissionsGranted(requestCode, permissions);
             }
         }
     }
+
+    /**
+     * 重启当前页面
+     */
+    public void recreate() {
+        if (activity != null) {
+            activity.recreate();
+        }
+        if (fragment != null) {
+            fragment.getActivity().recreate();
+        }
+    }
+
+    /**
+     * 页面请求返回
+     *
+     * @param requestCode 请求代码
+     * @param resultCode  结果代码
+     * @param data        数据
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(TAG, "onActivityResult requestCode：" + requestCode + ", resultCode: " + resultCode);
+        boolean isResultCode = resultCode == Activity.RESULT_OK || resultCode == Activity.RESULT_CANCELED;
+        if (startForResult && isResultCode) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()) {
+                Log.i(TAG, "onRequestPermissionsGranted");
+                if (listener != null) {
+                    listener.onRequestPermissionsGranted(getRequestCode(), permissions);
+                }
+            }
+        }
+        startForResult = false;
+    }
+
 
     /**
      * 处理页面的权限请求
@@ -250,21 +328,23 @@ public class AppPermission {
      */
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         int permissionsSize = permissions.length, grantResultSize = grantResults.length;
-        List<String> disabled = checkDisabled(permissions);
+        List<String> rationalePermissions = checkShowRequestRationalePermissions(permissions);
         Log.i(TAG, "onRequestPermissionsResult requestCode: " + requestCode + ", permissionsSize: " + permissionsSize + ",grantResultSize: " + grantResultSize);
-        if (disabled.size() > 0) {
-            Log.i(TAG, "disabled: " + disabled.toString());
+        if (rationalePermissions.size() > 0) {
+            Log.i(TAG, "rationalePermissions: " + rationalePermissions);
             if (listener != null) {
-                listener.onRequestPermissionRationale(requestCode, toArray(disabled));
+                listener.onRequestPermissionRationale(requestCode, toArray(rationalePermissions));
             }
         } else {
-            List<String> denied = checkDenied(permissions);
-            Log.i(TAG, "denied: " + denied.toString());
-            if (denied.size() > 0) {
+            List<String> deniedPermissions = checkDeniedPermissions(permissions);
+            Log.i(TAG, "deniedPermissions: " + deniedPermissions.toString());
+            if (deniedPermissions.size() > 0) {
+                Log.i(TAG, "onRequestPermissionsDenied");
                 if (listener != null) {
-                    listener.onRequestPermissionsDenied(requestCode, toArray(denied));
+                    listener.onRequestPermissionsDenied(requestCode, toArray(deniedPermissions));
                 }
             } else {
+                Log.i(TAG, "onRequestPermissionsGranted");
                 if (listener != null) {
                     listener.onRequestPermissionsGranted(requestCode, permissions);
                 }
@@ -273,21 +353,60 @@ public class AppPermission {
     }
 
     /**
-     * 跳转设置页面
+     * 启动页面获取结果
+     *
+     * @param intent      意图
+     * @param requestCode 请求代码
      */
-    public void startSettingActivity() {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= 9) {
-            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.fromParts("package", getContext().getApplicationContext().getPackageName(), null));
-        } else if (Build.VERSION.SDK_INT <= 8) {
+    public void startActivityForResult(Intent intent, int requestCode) {
+        if (activity != null) {
+            activity.startActivityForResult(intent, requestCode);
+        }
+        if (fragment != null) {
+            fragment.startActivityForResult(intent, requestCode);
+        }
+        startForResult = true;
+    }
+
+    /**
+     * 跳转当前应用的文件访问权限确认页面
+     */
+    public void startAppAllFilesAccessPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+            Uri uri = Uri.fromParts("package", getContext().getApplicationContext().getPackageName(), null);
+            intent.setData(uri);
+            startActivityForResult(intent, REQUEST_STORAGE_CODE);
+        }
+    }
+
+    /**
+     * 跳转所有应用的文件访问权限确认页面
+     */
+    public void startAllFilesAccessPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+            startActivityForResult(intent, REQUEST_STORAGE_CODE);
+        }
+    }
+
+    /**
+     * 跳转应用详细设置页面
+     */
+    public void startApplicationDetailSettings() {
+        Intent intent = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", getContext().getApplicationContext().getPackageName(), null);
+            intent.setData(uri);
+        } else {
             intent.setAction(Intent.ACTION_VIEW);
             intent.setClassName("com.android.settings", "com.android.setting.InstalledAppDetails");
             intent.putExtra("com.android.settings.ApplicationPkgName", getContext().getApplicationContext().getPackageName());
         }
-        getContext().startActivity(intent);
+        startActivityForResult(intent, REQUEST_STORAGE_CODE);
     }
+
 
     /**
      * 权限操作监听
