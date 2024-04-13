@@ -2,7 +2,6 @@ package androidx.ui.recycler;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,14 +36,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
      * View容器
      */
     private ViewHolder viewHolder;
-    /**
-     * 延迟
-     */
-    private Handler handler;
-    /**
-     * 延迟时间
-     */
-    private int notifyDelay = 300;
 
     public RecyclerAdapter(Context context) {
         this.context = context;
@@ -192,7 +183,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
         }
         getItems().addAll(data);
         notifyItemRangeInserted(positionStart + 1, size);
-        delayNotifyDataChanged();
     }
 
     /**
@@ -205,7 +195,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
             getItems().add(t);
         }
         notifyItemInserted(getItemCount() - 1);
-        delayNotifyDataChanged();
     }
 
     /**
@@ -219,7 +208,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
             getItems().add(position, item);
             notifyItemInserted(position);
         }
-        delayNotifyDataChanged();
     }
 
     /**
@@ -258,7 +246,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
         if (getItemCount() > 0 && position < getItemCount()) {
             data.remove(position);
             notifyItemRemoved(position);
-            delayNotifyDataChanged();
         }
     }
 
@@ -275,7 +262,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
             data.removeAll(data.subList(positionStart, itemCount));
             notifyItemRangeChanged(positionStart, itemCount);
         }
-        delayNotifyDataChanged();
     }
 
     /**
@@ -295,26 +281,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
             }
         }
         notifyItemMoved(fromPosition, toPosition);
-        delayNotifyDataChanged();
-    }
-
-    /**
-     * 延迟刷新数据改变
-     */
-    public void delayNotifyDataChanged() {
-        delayNotifyDataChanged(notifyDelay == 0 ? 300 : notifyDelay);
-    }
-
-    /**
-     * 延迟刷新数据改变
-     *
-     * @param delay 延迟时间
-     */
-    public void delayNotifyDataChanged(long delay) {
-        if (handler == null) {
-            handler = new Handler();
-        }
-        handler.postDelayed(this, delay);
     }
 
     @Override
@@ -463,15 +429,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
          */
         void onItemFocusChange(RecyclerAdapter<T> adapter, View v, int position, boolean hasFocus);
 
-    }
-
-    @Override
-    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
-        super.onDetachedFromRecyclerView(recyclerView);
     }
 
 }
