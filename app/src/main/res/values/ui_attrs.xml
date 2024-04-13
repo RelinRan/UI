@@ -14,9 +14,9 @@
     <attr name="topRightRadius" format="dimension" />
     <attr name="bottomLeftRadius" format="dimension" />
     <attr name="bottomRightRadius" format="dimension" />
-    <attr name="solidColor" format="reference|color"/>
-    <attr name="strokeWidth" format="reference|dimension"/>
-    <attr name="strokeColor" format="reference|color"/>
+    <attr name="solidColor" format="reference|color" />
+    <attr name="strokeWidth" format="reference|dimension" />
+    <attr name="strokeColor" format="reference|color" />
     <attr name="shape">
         <enum name="rectangle" value="0" />
         <enum name="oval" value="1" />
@@ -72,6 +72,7 @@
     <!--SwipeRefreshLayout-->
     <declare-styleable name="SwipeRefreshLayout">
         <attr name="swipeRefreshCircleBackgroundColor" format="color" />
+        <attr name="delay" />
     </declare-styleable>
     <!--WheelView-->
     <declare-styleable name="WheelView">
@@ -176,9 +177,9 @@
     </declare-styleable>
     <!--CardImage-->
     <declare-styleable name="CardImage">
-        <attr name="android:src"/>
-        <attr name="android:scaleType"/>
-        <attr name="android:adjustViewBounds"/>
+        <attr name="android:src" />
+        <attr name="android:scaleType" />
+        <attr name="android:adjustViewBounds" />
     </declare-styleable>
 
 </resources>

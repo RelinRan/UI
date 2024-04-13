@@ -397,6 +397,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         final TypedArray a = context.obtainStyledAttributes(attrs, LAYOUT_ATTRS);
         setEnabled(a.getBoolean(0, true));
         a.recycle();
+
     }
 
     @Override
@@ -431,6 +432,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     public void setOnRefreshListener(@Nullable OnRefreshListener listener) {
         mListener = listener;
     }
+
 
     /**
      * Notify the widget that refresh state has changed. Do not call this when

@@ -219,6 +219,7 @@ public class SwipeLoadingLayout extends LinearLayout implements NestedScrollView
             loadingView.start();
         } else {
             setCircleVisibility(GONE);
+            loadingView.cancel();
             setText(empty);
         }
     }
