@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Recycler使用的基础Adapter
  */
-public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements ViewHolder.OnItemClickLister, ViewHolder.OnItemFocusChangeListener, Runnable {
+public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements ViewHolder.OnItemClickLister, ViewHolder.OnItemFocusChangeListener {
 
     /**
      * 上下文对象
@@ -177,12 +177,12 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
      */
     public void addItems(List<T> data) {
         int size = data == null ? 0 : data.size();
-        int positionStart = getItemCount() - 1;
-        if (size > 0) {
-            positionStart = getItemCount() - 1;
-        }
+        int positionStart = getItemCount();
         getItems().addAll(data);
-        notifyItemRangeInserted(positionStart + 1, size);
+        if (size > 0) {
+            notifyItemRangeInserted(positionStart, size);
+            notifyItemRangeChanged(positionStart, size);
+        }
     }
 
     /**
@@ -191,10 +191,12 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
      * @param t
      */
     public void addItem(T t) {
+        int positionStart = getItemCount();
         if (t != null) {
             getItems().add(t);
         }
-        notifyItemInserted(getItemCount() - 1);
+        notifyItemInserted(positionStart);
+        notifyItemRangeChanged(positionStart, 1);
     }
 
     /**
@@ -207,6 +209,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
         if (item != null) {
             getItems().add(position, item);
             notifyItemInserted(position);
+            notifyItemRangeChanged(position, getItemCount() - position);
         }
     }
 
@@ -243,12 +246,13 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
      * @param position 位置
      */
     public void removeItem(int position) {
-        if (getItemCount() > 0 && position < getItemCount()) {
+        int count = getItemCount();
+        if (count > 0 && position < count) {
             data.remove(position);
             notifyItemRemoved(position);
+            notifyItemRangeChanged(position, count - position);
         }
     }
-
 
     /**
      * 删除Item
@@ -260,6 +264,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
         int count = getItemCount();
         if (count > 0) {
             data.removeAll(data.subList(positionStart, itemCount));
+            notifyItemRangeRemoved(positionStart, itemCount);
             notifyItemRangeChanged(positionStart, itemCount);
         }
     }
@@ -281,11 +286,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter implements
             }
         }
         notifyItemMoved(fromPosition, toPosition);
-    }
-
-    @Override
-    public void run() {
-        notifyDataSetChanged();
+        notifyItemRangeChanged(0, getItemCount());
     }
 
     /**
