@@ -79,6 +79,8 @@ public class CarouselPager extends FrameLayout implements ViewPager.OnPageChange
     private int itemCount = 0;
     //资源布局
     private int listItem = R.layout.ui_carousel_item;
+    //是否动画滚动
+    private boolean smoothScroll = true;
 
     public CarouselPager(@NonNull Context context) {
         super(context);
@@ -136,6 +138,22 @@ public class CarouselPager extends FrameLayout implements ViewPager.OnPageChange
         }
         onCreateIndicatorsLayout();
         initDefAdapter(context);
+    }
+
+    /**
+     * 是否动画滚动
+     * @return
+     */
+    public boolean isSmoothScroll() {
+        return smoothScroll;
+    }
+
+    /**
+     * 设置是否动画滚动
+     * @param smoothScroll
+     */
+    public void setSmoothScroll(boolean smoothScroll) {
+        this.smoothScroll = smoothScroll;
     }
 
     /**
@@ -509,6 +527,28 @@ public class CarouselPager extends FrameLayout implements ViewPager.OnPageChange
             pager.setCurrentItem(isCycle() ? position + 1 : position);
         }
     }
+
+    /**
+     * 设置位置
+     * 需要注意的是在setAdapter之后设置位置才行
+     *
+     * @param position
+     * @param smoothScroll
+     */
+    public void setPosition(int position,boolean smoothScroll) {
+        if (adapter == null) {
+            new Exception("The setPosition() method should be after the setAdapter() method.").printStackTrace();
+            return;
+        }
+        if (pager == null) {
+            new NullPointerException("Carousel pager is null,you can't set position.").printStackTrace();
+            return;
+        }
+        if (pager != null) {
+            pager.setCurrentItem(isCycle() ? position + 1 : position,smoothScroll);
+        }
+    }
+
 
     /**
      * 播放跳转

@@ -18,7 +18,7 @@ public class CarouselMessenger extends Handler {
     public void handleMessage(Message msg) {
         super.handleMessage(msg);
         int index = carousel.getPager().getCurrentItem() + 1;
-        carousel.getPager().setCurrentItem(index);
+        carousel.getPager().setCurrentItem(index,carousel.isSmoothScroll());
         carousel.play();
     }
 
